@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
         // Respond with success
         return NextResponse.json({ message: 'Resume saved successfully' }, { status: 200 });
-    } catch (error: any) {
+    } catch (error) {
         console.error('Error saving resume:', error);
 
         // Handle server error

@@ -2,26 +2,14 @@
 
 
 "use client"
-import React, { useEffect, useState } from 'react';
-import { Heart, Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import React from 'react';
+import { Heart } from 'lucide-react';
 import { assets } from '@/assets/assets';
 import Midsection from './sections/Midsection';
 import ResumeSteps from './sections/Upsection';
 import Footer from './sections/Footer';
 
 const MainPage = () => {
-  const { setTheme, theme } = useTheme()
-  const [isDarkTheme, setIsDarkTheme] = useState(theme == 'light' ? false : true);
-
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme)
-  };
-
-  useEffect(() => {
-    setTheme(isDarkTheme ? 'dark' : 'light')
-  }, [isDarkTheme])
-
   return (
     <div className="min-h-screen">
       <div className="banner flex flex-col lg:flex-row justify-between  px-4 sm:px-6 lg:px-10 relative">
@@ -35,7 +23,7 @@ const MainPage = () => {
           {/* Description */}
           <div className="mt-8 lg:mt-14 max-w-[1000px]">
             <p className="text-sm lg:text-base uppercase text-gray-500 dark:text-gray-400">
-              Build your perfect resume effortlessly with our AI-powered resume builder! Designed to cater to professionals across industries, our platform uses cutting-edge AI to craft tailored resumes that highlight your skills, achievements, and career goals. Whether you're just starting out or aiming for your next big role, our intuitive interface and intelligent recommendations make the process fast, easy, and effective. Start building your dream career today!
+              Build your perfect resume effortlessly with our AI-powered resume builder! Designed to cater to professionals across industries, our platform uses cutting-edge AI to craft tailored resumes that highlight your skills, achievements, and career goals. Whether you&apos;re just starting out or aiming for your next big role, our intuitive interface and intelligent recommendations make the process fast, easy, and effective. Start building your dream career today!
             </p>
 
             {/* Search Form */}
@@ -66,8 +54,6 @@ const MainPage = () => {
             <div className="w-full lg:w-[46%] lg:h-[600px] overflow-hidden">
               {/* Wrapper for continuous animation */}
               <div className="lg:animate-scroll-down md:animate-scroll-right flex lg:flex-col md:flex-row flex-col">
-                {/* Double the images for seamless loop */}
-                {/* {[...Array(2)].map((_, groupIndex) => ( */}
                 <div className="flex lg:flex-col md:flex-row flex-col">
                   <div className="border border-black dark:border-orange-500 p-4 lg:p-6 relative w-full  mb-5">
                     <Heart size={25} className='inline-flex' />
@@ -86,8 +72,6 @@ const MainPage = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* ))} */}
               </div>
             </div>
 
@@ -113,11 +97,8 @@ const MainPage = () => {
                     </span>
                   </div>
                 </div>
-                {/* ))} */}
               </div>
             </div>
-
-            {/* Stats Cards */}
           </div>
         </div>
       </div>

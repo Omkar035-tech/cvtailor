@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { assets } from '@/assets/assets';
 
 const Navbar = () => {
-    const { user, isSignedIn } = useUser();
+    const { isSignedIn } = useUser();
     const { setTheme, theme } = useTheme()
     const [isDarkTheme, setIsDarkTheme] = useState(theme == 'light' ? false : true);
 

@@ -47,7 +47,7 @@ export async function POST(req: Request) {
             data: {
                 userId: user.id,
                 templateName,
-                resumeData: templateData as any,
+                resumeData: templateData,
             },
         });
 

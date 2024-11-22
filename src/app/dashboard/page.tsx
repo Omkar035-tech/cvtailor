@@ -32,7 +32,6 @@ import html2canvas from 'html2canvas';
 import ReactDOM from 'react-dom/client';
 
 const ResumePreview = ({ resume }) => {
-    const previewRef = useRef(null);
     const [previewUrl, setPreviewUrl] = useState('');
 
     useEffect(() => {
