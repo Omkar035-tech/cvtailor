@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/db';
 
-async function deleteFnc(
+export async function POST(
     req: Request,
     { params }: { params: { resumeId: string } }
 ) {
@@ -71,7 +71,6 @@ async function deleteFnc(
         );
     }
 }
-export { deleteFnc as DELETE }
 
 
 
