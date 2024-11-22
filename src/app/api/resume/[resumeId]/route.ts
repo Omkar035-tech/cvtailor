@@ -72,15 +72,19 @@
 //     }
 // }
 
-
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/db';
-import type { NextRequest } from 'next/server';
 
-export async function DELETE(
-    req: NextRequest,
-    context: { params: { resumeId: string } }
+interface Context {
+    params: {
+        resumeId: string;
+    };
+}
+
+async function deleteFnc(
+    req: Request,
+    { params }: Context
 ) {
     const { userId } = await auth();
 
@@ -92,7 +96,7 @@ export async function DELETE(
     }
 
     try {
-        const { resumeId } = context.params;
+        const { resumeId } = params;
 
         if (!resumeId) {
             return NextResponse.json(
@@ -147,3 +151,6 @@ export async function DELETE(
         );
     }
 }
+
+
+export { deleteFnc as DELETE }
