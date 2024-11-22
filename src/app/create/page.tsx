@@ -113,7 +113,7 @@ const DynamicResumeForm = () => {
     ) => {
         setFormData(prev => ({
             ...prev,
-            [section]: prev[section].map((item: any, i: number) =>
+            [section]: prev[section].map((item, i: number) =>
                 i === index ? { ...item, [field]: value } : item
             )
         }));
@@ -122,7 +122,7 @@ const DynamicResumeForm = () => {
     const addNewItem = (section: 'map_experience' | 'map_education' | 'map_skills') => {
         const templateVars = getTemplateVars();
         const fields = templateVars[section];
-        const newItem = fields.reduce((acc: any, field: string) => ({ ...acc, [field]: '' }), {});
+        const newItem = fields.reduce((acc, field: string) => ({ ...acc, [field]: '' }), {});
 
         setFormData(prev => ({
             ...prev,
@@ -133,7 +133,7 @@ const DynamicResumeForm = () => {
     const removeItem = (section: 'map_experience' | 'map_education' | 'map_skills', index: number) => {
         setFormData(prev => ({
             ...prev,
-            [section]: prev[section].filter((_: any, i: number) => i !== index)
+            [section]: prev[section].filter((_, i: number) => i !== index)
         }));
     };
 
@@ -233,7 +233,7 @@ const DynamicResumeForm = () => {
                 return (
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold">Experience</h2>
-                        {formData.map_experience.map((exp: any, index: number) => (
+                        {formData.map_experience.map((exp, index: number) => (
                             <Card key={index} className="p-4 space-y-4">
                                 {templateVars.map_experience.map((field: string) => (
                                     <div key={field}>
@@ -281,7 +281,7 @@ const DynamicResumeForm = () => {
                 return (
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold">Education</h2>
-                        {formData.map_education.map((edu: any, index: number) => (
+                        {formData.map_education.map((edu, index: number) => (
                             <Card key={index} className="p-4 space-y-4">
                                 {templateVars.map_education.map((field: string) => (
                                     <div key={field}>
@@ -329,7 +329,7 @@ const DynamicResumeForm = () => {
                 return (
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold">Skills</h2>
-                        {formData.map_skills.map((skill: any, index: number) => (
+                        {formData.map_skills.map((skill, index: number) => (
                             <Card key={index} className="p-4 space-y-4">
                                 {templateVars.map_skills.map((field: string) => (
                                     <div key={field}>

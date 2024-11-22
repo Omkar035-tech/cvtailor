@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 // Define types for DynamicVariables
 interface DynamicVariables {
-  [key: string]: any; // Allows for flexible structures like arrays and objects
+  [key: string]; // Allows for flexible structures like arrays and objects
 }
 
 interface TemplateProps {
@@ -469,7 +469,7 @@ const templates = [
 
 const mapContent = (
   key: string,
-  items: Array<{ [key: string]: any }>,
+  items: Array<{ [key: string] }>,
   template_name: string
 ): string => {
   switch (key) {

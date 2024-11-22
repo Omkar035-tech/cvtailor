@@ -1,7 +1,7 @@
 import { assets } from "@/assets/assets";
 import React from "react";
 
-const Card = ({ image, heading, description, reverse }: any) => (
+const Card = ({ image, heading, description, reverse }) => (
     <div
         className={`flex flex-col lg:flex-row ${reverse ? "lg:flex-row-reverse" : ""
             } items-center bg-orange-500 lg:justify-between gap-6 lg:gap-12 py-6 shadow-lg rounded-lg overflow-hidden border my-6`}
