@@ -162,6 +162,7 @@ const DynamicResumeForm = () => {
             }
 
             const result = await response.json();
+
         } catch (error) {
             console.error('Error saving resume:', error);
         }
