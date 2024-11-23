@@ -125,8 +125,8 @@ const DashboardPage = () => {
     const handleDelete = async (resumeId: string) => {
         console.log(resumeId)
         try {
-            const response = await fetch(`/api/resume/${resumeId}`, {
-                method: 'DELETE',
+            const response = await fetch(`/api/resume/delete/${resumeId}`, {
+                method: 'GET',
             });
 
             if (!response.ok) {
