@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { EllipsisVertical, Plus } from 'lucide-react';
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -30,9 +31,11 @@ import Templates from '@/templates/templates';
 // import { useRouter } from 'next/router';
 import html2canvas from 'html2canvas';
 import ReactDOM from 'react-dom/client';
+import Toast from '@/components/Toast';
 
 const ResumePreview = ({ resume }) => {
     const [previewUrl, setPreviewUrl] = useState('');
+
 
     useEffect(() => {
         const generatePreview = async () => {
@@ -99,10 +102,11 @@ const DashboardPage = () => {
     const [selectedResume, setSelectedResume] = useState(null);
     const [showPreviewModal, setShowPreviewModal] = useState(false);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-
+    const [showToast, setShowToast] = useState({ status: false, message: '', type: '' });
     // Fetch resumes on component mount
 
     React.useEffect(() => {
+        setShowToast({ status: true, message: 'Resume Loading...', type: 'success' })
         const loadResumes = async () => {
             try {
                 const response = await fetch('/api/resume', {
@@ -115,6 +119,7 @@ const DashboardPage = () => {
 
                 const result = await response.json();
                 setResumes(result.resumeData)
+
             } catch (error) {
                 console.error('Error saving resume:', error);
             }
@@ -123,7 +128,6 @@ const DashboardPage = () => {
     }, []);
 
     const handleDelete = async (resumeId: string) => {
-        console.log(resumeId)
         try {
             const response = await fetch(`/api/resume/delete/${resumeId}`, {
                 method: 'GET',
@@ -134,11 +138,12 @@ const DashboardPage = () => {
             }
 
             const result = await response.json();
-            console.log(result)
+            setShowToast({ status: true, message: result.message, type: 'success' })
             setResumes(resumes.filter(resume => resume.id !== resumeId));
             setShowDeleteDialog(false);
         } catch (error) {
             console.error('Error saving resume:', error);
+            setShowToast({ status: true, message: `${error}`, type: 'error' })
         }
     };
 
@@ -162,6 +167,14 @@ const DashboardPage = () => {
 
     return (
         <div className="container mx-auto p-6">
+            {showToast.status && (
+                <Toast
+                    message={showToast.message}
+                    type={showToast.type == 'success' ? 'success' : 'error'}
+                    duration={3000}
+                    onClose={() => setShowToast({ status: false, message: '', type: '' })}
+                />
+            )}
             <h1 className="text-2xl font-bold mb-6">My Resumes</h1>
             <div className="flex flex-wrap justify-start items-center gap-6">
                 {/* New Resume Card */}

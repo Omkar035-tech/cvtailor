@@ -57,9 +57,9 @@ const MainPage = () => {
                 <div className="flex lg:flex-col md:flex-row flex-col">
                   <div className="border border-black dark:border-orange-500 p-4 lg:p-6 relative w-full  mb-5">
                     <Heart size={25} className='inline-flex' />
-                    <h2 className="text-3xl lg:text-[52px] font-extrabold mb-4 text-black dark:text-white">42k+</h2>
+                    <h2 className="text-3xl lg:text-[52px] font-extrabold mb-4 text-black dark:text-white">10+</h2>
                     <span className="text-base lg:text-[20px] capitalize text-gray-500 dark:text-orange-500">
-                      satisfied <br /> family
+                      Beautiful <br /> Templates
                     </span>
                   </div>
                   {[assets.img1, assets.img2, assets.img3, assets.img4].map((item, index) => (
@@ -91,9 +91,9 @@ const MainPage = () => {
                   ))}
                   <div className="border border-black dark:border-orange-500 p-4 lg:p-6 relative w-full ">
                     <Heart size={25} />
-                    <h2 className="text-3xl lg:text-[52px] font-extrabold mb-4 text-black dark:text-white">30k+</h2>
+                    <h2 className="text-3xl lg:text-[52px] font-extrabold mb-4 text-black dark:text-white">20+</h2>
                     <span className="text-base lg:text-[20px] capitalize text-gray-500 dark:text-orange-500">
-                      Available <br /> Unit for Sale
+                      Professional <br /> Resumes
                     </span>
                   </div>
                 </div>

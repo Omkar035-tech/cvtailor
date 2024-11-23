@@ -17,7 +17,8 @@ import { Plus, Trash2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download } fr
 import Templates from '@/templates/templates';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
+import Toast from '@/components/Toast';
 
 const FORM_STEPS = {
     TEMPLATE_SELECT: 'TEMPLATE_SELECT',
@@ -52,6 +53,7 @@ const templates = [
 const DynamicResumeForm = () => {
     const [selectedTemplate, setSelectedTemplate] = useState('');
     const [currentStep, setCurrentStep] = useState(FORM_STEPS.TEMPLATE_SELECT);
+    const [showToast, setShowToast] = useState({ status: false, message: '', type: '' });
     const [formData, setFormData] = useState({
         personal: {},
         map_experience: [],
@@ -164,7 +166,8 @@ const DynamicResumeForm = () => {
 
             const result = await response.json();
             if (result.status === 200) {
-                redirect('/dashboard');
+                setShowToast({ status: true, message: result.message, type: 'success' })
+                // redirect('/dashboard');
             }
         } catch (error) {
             console.error('Error saving resume:', error);
@@ -625,6 +628,14 @@ const DynamicResumeForm = () => {
 
     return (
         <div className="max-w-7xl mx-auto p-6">
+            {showToast.status && (
+                <Toast
+                    message={showToast.message}
+                    type={showToast.type == 'success' ? 'success' : 'error'}
+                    duration={3000}
+                    onClose={() => setShowToast({ status: false, message: '', type: '' })}
+                />
+            )}
             {renderProgressBar()}
             {renderStepIndicator()}
 
