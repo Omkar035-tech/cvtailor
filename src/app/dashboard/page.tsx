@@ -126,7 +126,7 @@ const DashboardPage = () => {
         console.log(resumeId)
         try {
             const response = await fetch(`/api/resume/${resumeId}`, {
-                method: 'POST',
+                method: 'DELETE',
             });
 
             if (!response.ok) {

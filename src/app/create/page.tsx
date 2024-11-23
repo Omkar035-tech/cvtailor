@@ -17,6 +17,7 @@ import { Plus, Trash2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download } fr
 import Templates from '@/templates/templates';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { redirect } from 'next/navigation';
 
 const FORM_STEPS = {
     TEMPLATE_SELECT: 'TEMPLATE_SELECT',
@@ -162,7 +163,9 @@ const DynamicResumeForm = () => {
             }
 
             const result = await response.json();
-            console.log(result)
+            if (result.status === 200) {
+                redirect('/dashboard');
+            }
         } catch (error) {
             console.error('Error saving resume:', error);
         }

@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     if (!userId) {
         return NextResponse.json(
-            { message: 'Unauthorized' },
+            { message: 'Unauthorized', status: 401, },
             { status: 401 }
         );
     }
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
         // Validate input
         if (!templateName || !templateData) {
             return NextResponse.json(
-                { message: 'Invalid data: template name and data are required' },
+                { message: 'Invalid data: template name and data are required', status: 400, },
                 { status: 400 }
             );
         }
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
         if (!user) {
             return NextResponse.json(
-                { message: 'User not found' },
+                { message: 'User not found', status: 404, },
                 { status: 404 }
             );
         }
@@ -56,6 +56,7 @@ export async function POST(req: Request) {
             {
                 message: 'Resume saved successfully',
                 resumeId: savedResume.id,
+                status: 200,
             },
             { status: 200 }
         );
@@ -66,6 +67,7 @@ export async function POST(req: Request) {
         return NextResponse.json(
             {
                 message: 'Internal Server Error',
+                status: 500,
                 error:
                     error instanceof Error
                         ? error.message
