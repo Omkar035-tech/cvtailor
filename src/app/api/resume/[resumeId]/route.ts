@@ -81,16 +81,21 @@
 //         );
 //     }
 // }
-
-
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/db';
 
+// Updated type definition for Next.js App Router
+type Props = {
+    params: {
+        resumeId: string
+    }
+}
+
 export async function DELETE(
-    request: NextRequest,
-    { params }: { params: { resumeId: string } }
-) {
+    _req: NextRequest,
+    { params }: Props
+): Promise<NextResponse> {
     const { userId } = await auth();
 
     if (!userId) {
