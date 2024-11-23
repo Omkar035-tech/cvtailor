@@ -1,10 +1,20 @@
+
+
 // import { NextResponse } from 'next/server';
 // import { auth } from '@clerk/nextjs/server';
 // import prisma from '@/lib/db';
 
+// // Define the correct type for route parameters
+// type RouteParams = {
+//     params: {
+//         resumeId: string;
+//     };
+//     searchParams: { [key: string]: string | string[] | undefined };
+// };
+
 // export async function DELETE(
 //     req: Request,
-//     { params }: { params: { resumeId: string } }
+//     context: RouteParams  // Use the correct type here
 // ) {
 //     const { userId } = await auth();
 
@@ -16,7 +26,7 @@
 //     }
 
 //     try {
-//         const { resumeId } = params;
+//         const { resumeId } = context.params;  // Access resumeId from context.params
 
 //         if (!resumeId) {
 //             return NextResponse.json(
@@ -73,22 +83,13 @@
 // }
 
 
-
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/db';
 
-// Define the correct type for route parameters
-type RouteParams = {
-    params: {
-        resumeId: string;
-    };
-    searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export async function DELETE(
-    req: Request,
-    context: RouteParams  // Use the correct type here
+    request: NextRequest,
+    { params }: { params: { resumeId: string } }
 ) {
     const { userId } = await auth();
 
@@ -100,7 +101,7 @@ export async function DELETE(
     }
 
     try {
-        const { resumeId } = context.params;  // Access resumeId from context.params
+        const resumeId = params.resumeId;
 
         if (!resumeId) {
             return NextResponse.json(
